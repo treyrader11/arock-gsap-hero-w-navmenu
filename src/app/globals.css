@@ -2,26 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-family: "Akkurat Mono";
+  font-size: 11px;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.menu-sub-col {
+  flex: 1;
+}
+
+.menu-sub-item p {
+  position: relative;
 }
