@@ -1,12 +1,12 @@
+import Content from "./components/Content";
 import Hero from "./components/Hero";
 import { cn } from "./lib/utils";
-// import { Menu } from "./components/Nav";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <Hero />
-      {/* <Menu /> */}
+      <Content />
     </main>
   );
 }
