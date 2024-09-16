@@ -22,19 +22,8 @@ export default function Nav() {
       delay: 11,
     });
 
-    // const splitTextIntoSpans = (element) => {
-    //   if (element) {
-    //     const text = element.innerText;
-    //     const splitText = text
-    //       .split("")
-    //       .map((char) => `<span>${char}</span>`)
-    //       .join("");
-    //     element.innerHTML = splitText;
-    //   }
-    // };
-    if (headerRef.current) {
+    if (headerRef.current)
       splitTextIntoSpans(headerRef.current.querySelector("h1"));
-    }
 
     gsap.to(headerRef.current.querySelectorAll("h1 span"), {
       top: "0px",
@@ -47,20 +36,59 @@ export default function Nav() {
 
   return (
     <>
-      <nav ref={navRef}>
-        <div className="logo">
+      <nav
+        className={cn(
+          "fixed",
+          "top-0",
+          "w-full",
+          "z-10",
+          "flex",
+          "uppercase",
+          "text-[#ebdc0b]",
+          // "font-light",
+          "text-4xl"
+        )}
+        ref={navRef}
+      >
+        <div className="flex-1 logo">
           <p>Logo</p>
         </div>
-        <div className="site-info">
+        <div className={cn("site-info", "text-center", "flex-1")}>
           <p>(Photographer, creative director, filmmaker)</p>
         </div>
-        <div className="menu">
+        <div className="flex-1 text-right">
           <p>Menu</p>
         </div>
       </nav>
-      <div ref={headerRef} className="header">
-        <h1>Howard</h1>
+      <div
+        ref={headerRef}
+        className={cn(
+          "header",
+          "absolute",
+          "top-1/2",
+          "left-1/2",
+          "-translate-y-1/2",
+          "-translate-x-1/2"
+        )}
+      >
+        <Headline />
       </div>
     </>
+  );
+}
+
+function Headline() {
+  return (
+    <h1
+      style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+      className={cn(
+        "text-[20vw]",
+        "font-light",
+        "text-yellow-400",
+        "uppercase"
+      )}
+    >
+      Howard
+    </h1>
   );
 }

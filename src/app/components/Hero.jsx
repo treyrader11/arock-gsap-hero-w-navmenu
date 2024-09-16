@@ -32,63 +32,39 @@ export default function Hero() {
   });
 
   return (
-    <section ref={heroRef} className="hero">
+    <section ref={heroRef} className={cn("hero w-screen h-screen p-[3em]")}>
       <Preloader />
       <Images ref={heroImgsRef} />
     </section>
   );
 }
 
-const Images = forwardRef((props, ref) => {
+const Images = forwardRef((_, ref) => {
   return (
-    <div ref={ref} className="hero-imgs">
+    <div
+      ref={ref}
+      className={cn(
+        "hero-imgs",
+        "relative",
+        "size-full",
+        "overflow-hidden",
+        "z-0"
+      )}
+    >
       {IMAGES.map((img, i) => (
         <Image
+          style={{
+            clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+          }}
           key={i}
           src={`/${img}.jpg`}
           alt=""
-          width={100}
-          height={100}
-          // objectFit="cover"
-          // layout="fill"
+          fill
+          className={cn("absolute size-full object-cover")}
         />
       ))}
-      {/* <img src="./assets/img1.jpg" alt="" />
-      <img src="./assets/img2.jpg" alt="" />
-      <img src="./assets/img3.jpg" alt="" />
-      <img src="./assets/img4.jpg" alt="" />
-      <img src="./assets/img5.jpg" alt="" />
-      <img src="./assets/img6.jpg" alt="" />
-      <img src="./assets/img7.jpg" alt="" /> */}
     </div>
   );
 });
 
 Images.displayName = "Images";
-
-// const Images = forwardRef(props, ref) => {
-//   return (
-//     <div ref={ref} className="hero-imgs">
-//       {IMAGES.map((img, i) => (
-//         <Image
-//           key={i}
-//           src={`/${img}.jpg`}
-//           alt=""
-//           width={100}
-//           height={100}
-//           // objectFit="cover"
-//           // layout="fill"
-//         />
-//       ))}
-//       {/* <img src="./assets/img1.jpg" alt="" />
-//       <img src="./assets/img2.jpg" alt="" />
-//       <img src="./assets/img3.jpg" alt="" />
-//       <img src="./assets/img4.jpg" alt="" />
-//       <img src="./assets/img5.jpg" alt="" />
-//       <img src="./assets/img6.jpg" alt="" />
-//       <img src="./assets/img7.jpg" alt="" /> */}
-//     </div>
-//   );
-// }
-
-// Images.displayName = "Images";

@@ -4,7 +4,16 @@ import Nav from "./Nav";
 
 export default function Content() {
   return (
-    <div class="website-content">
+    <div
+      className={cn(
+        // "website-content",
+        "absolute",
+        "top-0",
+        "left-0",
+        "size-full",
+        "z-10"
+      )}
+    >
       <Nav />
     </div>
   );

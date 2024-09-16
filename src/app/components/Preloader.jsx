@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const Digit = forwardRef(({ range }, ref) => (
-  <div ref={ref} className="digit">
+  <div ref={ref} className={cn("digit", "relative", "top-[-15px]")}>
     {range.map((num) => (
       <div key={num} className="num">
         {num}
@@ -27,17 +27,6 @@ export default function Preloader() {
   const preLoaderRef = useRef(null);
 
   useGSAP(() => {
-    // const splitTextIntoSpans = (element) => {
-    //   if (element) {
-    //     const text = element.innerText;
-    //     const splitText = text
-    //       .split("")
-    //       .map((char) => `<span>${char}</span>`)
-    //       .join("");
-    //     element.innerHTML = splitText;
-    //   }
-    // };
-
     for (let i = 0; i < 2; i++) {
       for (let j = 0; j < 10; j++) {
         const div = document.createElement("div");
@@ -89,15 +78,58 @@ export default function Preloader() {
   }, []);
 
   return (
-    <div ref={preLoaderRef} className="pre-loader">
-      <p>Loading</p>
-      <div className="counter">
+    <div
+      ref={preLoaderRef}
+      className={cn(
+        "pre-loader",
+        "w-[200%]",
+        "h-full",
+        "flex",
+        "justify-end",
+        "items-end",
+        "fixed",
+        "top-0",
+        "right-0",
+        "gap-2",
+        "overflow-hidden",
+        "p-[2em]"
+      )}
+    >
+      <p className={cn("w-max", "uppercase", "text-6xl", "leading-[60px]")}>
+        Loading
+      </p>
+      <div
+        style={{ clipPath: "polygon(0 0, 100% 0, 100% 100px, 0 100px)" }}
+        className={cn(
+          "counter",
+          "h-[100px]",
+          "flex",
+          "text-8xl",
+          "leading-[150px]"
+        )}
+      >
         <Digit ref={digit1Ref} range={[0, 1]} />
         <Digit ref={digit2Ref} range={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} />
         <Digit ref={digit3Ref} range={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]} />
         <div className="digit-4">%</div>
       </div>
-      <div ref={progressBarRef} className="progress-bar"></div>
+      <ProgressBar ref={progressBarRef} />
     </div>
   );
 }
+
+const ProgressBar = forwardRef((_, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "progress-bar",
+      "relative",
+      "top-[-15px]",
+      "w-0",
+      "h-1",
+      "bg-black"
+    )}
+  />
+));
+
+ProgressBar.displayName = "ProgressBar";
